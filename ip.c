@@ -2,18 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int suji(char a[256]){
-
-int i = 0;
-for(i = 0; i < strlen(a); i++){
-
-
-}
-
-return a;
-
-}
-
 int main(void){
 
 
@@ -27,9 +15,7 @@ int main(void){
 	for(i = 0; i < strlen(moto); i++){
 		if(moto[i] != '*' && asta == -1){
 			sahen[i] = moto[i];
-			printf("%s\n%s\n", moto, sahen);
-
-		}
+				}
 		if(moto[i] == '*'){
 			asta = i;
 		}
@@ -38,14 +24,39 @@ int main(void){
 	int k = 0, j = asta+1;
 	for(j = asta+1; j<strlen(moto); j++ ){
 		uhen[k] = moto[j];
-		printf("%s\n%s\n",moto, uhen);
 		k++;
 	}
-
-	int uhensu[256],sahensu[256];
-
-	uhensu = suji(uhen);
-	sahensu = suji(sahen);
+	int sahensu[256]={}, count = 0;
+	//左辺の数字のみをsahensuに格納
+	for(i = 1; i < strlen(sahen); i++){
+		
+		sahensu[count] = atoi(&sahen[i]);
+		while(sahen[i] != ','){
+			i++;
+		}
+		count++;
+		
+	}
+	int uhensu[256]={};
+	int d = count;
+	count = 0;
+	//右辺の数字のみをuhensuに格納
+	for(j = 1; j < strlen(uhen); j++){
+		uhensu[count] = atoi(&uhen[j]);
+		while(uhen[j] != ','){
+			j++;
+		}
+		
+		count++;	
+}
+	//要素数が同じであれば、次元数と計算結果を出す
+	int kei = 0;
+	if(sizeof(sahensu) ==sizeof(uhensu) ){
+		for(i = 0; i < sizeof(sahensu)/sizeof(sahensu[0]); i++){
+			kei = kei +(sahensu[i] * uhensu[i]);
+		}
+		printf("D=%d,I=%d\n", d, kei);
+	}	
 
 	return 0;
 }
