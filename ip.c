@@ -15,7 +15,7 @@ int main(void){
 	for(i = 0; i < strlen(moto); i++){
 		if(moto[i] != '*' && asta == -1){
 			sahen[i] = moto[i];
-				}
+		}
 		if(moto[i] == '*'){
 			asta = i;
 		}
@@ -29,16 +29,16 @@ int main(void){
 	int sahensu[256]={}, count = 0;
 	//左辺の数字のみをsahensuに格納
 	for(i = 1; i < strlen(sahen); i++){
-		
+
 		sahensu[count] = atoi(&sahen[i]);
 		while(sahen[i] != ','){
 			i++;
 		}
 		count++;
-		
+
 	}
 	int uhensu[256]={};
-	int d = count;
+	int d_sahen = count;
 	count = 0;
 	//右辺の数字のみをuhensuに格納
 	for(j = 1; j < strlen(uhen); j++){
@@ -46,16 +46,19 @@ int main(void){
 		while(uhen[j] != ','){
 			j++;
 		}
-		
+
 		count++;	
-}
+	}
+	int d_uhen = count;
 	//要素数が同じであれば、次元数と計算結果を出す
 	int kei = 0;
-	if(sizeof(sahensu) ==sizeof(uhensu) ){
+	if(d_sahen == d_uhen ){
 		for(i = 0; i < sizeof(sahensu)/sizeof(sahensu[0]); i++){
 			kei = kei +(sahensu[i] * uhensu[i]);
 		}
-		printf("D=%d,I=%d\n", d, kei);
+		printf("D=%d,I=%d\n", d_uhen, kei);
+	}else{
+		printf("Error\n");
 	}	
 
 	return 0;
